@@ -29,6 +29,33 @@
 </head>
 <body>
     <h1>Site Under Construction</h1>
-    <p>For inquiries, please contact us at <a href="mailto:support@assurance.technology">support@assurance.technology</a>.</p>
+    <p>For inquiries, please contact us at <a id="contact-email" href="#">support@domain.com</a>.</p>
+
+    <script>
+        // Function to extract the domain from the current URL
+        function getDomainFromURL() {
+            const hostname = window.location.hostname;
+            const parts = hostname.split('.');
+            const partsLength = parts.length;
+
+            // Handle cases like 'www.example.com' or 'example.com'
+            if (partsLength >= 2) {
+                return parts.slice(-2).join('.');
+            }
+            return hostname;
+        }
+
+        // Function to set the contact email based on the domain
+        function setContactEmail() {
+            const domain = getDomainFromURL();
+            const emailAddress = `support@${domain}`;
+            const emailLink = document.getElementById('contact-email');
+            emailLink.href = `mailto:${emailAddress}`;
+            emailLink.textContent = emailAddress;
+        }
+
+        // Set the contact email when the page loads
+        window.onload = setContactEmail;
+    </script>
 </body>
 </html>
